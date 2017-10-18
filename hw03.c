@@ -21,13 +21,15 @@ void print_student(Mode m, Student s) {
   }
 }
 
+/*
+	argv[1] will be the Mode integer
+	argv[2...] will be student info in the form [first_name, last_name, major, year]
+	the fields are all strings (char[])
+	except year is a number (int)
+*/
 int main() {
   // TODO: parse argv to populate student structs 
-  // argv[1] will be the Mode integer
-  // argv[2...] will be student info in the form [first_name, last_name, major, year]
-  // the fields are all strings (char[]) except year is a number (int)
   // for now, here's two hardcoded students:
-  
   Student s1, s2;
   s1.first_name = "Julia";
   s1.last_name = "A";
