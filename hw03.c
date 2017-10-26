@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef enum {
   NAME_ONLY = 0,
@@ -9,6 +10,8 @@ typedef enum {
 typedef struct {
   char *first_name;
   char *last_name;
+  char *major;
+  int year;
   // TODO: add fields here for major and year
 } Student;
 
@@ -18,7 +21,13 @@ void print_student(Mode m, Student s) {
       printf("%s %s\n", s.first_name, s.last_name);
       break;
 	// TODO: handle other cases
-  }
+	case MAJOR_AND_NAME:
+		 printf("%s %s %s\n", s.major, s.first_name,s.last_name);
+		 break;
+	case YEAR_AND_NAME:
+		 printf("%d %s %s\n", s.year, s.first_name, s.last_name);
+		break;
+	}
 }
 
 /*
@@ -27,16 +36,27 @@ void print_student(Mode m, Student s) {
 	the fields are all strings (char[])
 	except year is a number (int)
 */
-int main() {
+int main(int argc, char *argv[]) {
   // TODO: parse argv to populate student structs 
   // for now, here's two hardcoded students:
-  Student s1, s2;
-  s1.first_name = "Julia";
-  s1.last_name = "A";
-  s2.first_name = "Peter";
-  s2.last_name = "Cooper";
+	Student s;
+	int major = atoi(argv[1]);
+
   
-  print_student(NAME_ONLY, s1);
-  print_student(NAME_ONLY, s2);
+    for (int i=2; i<=argc-2; i+=4){
+		 int first = i;
+		 int last = i+1;
+		 int m = i+2;
+		 int y = i+3;
+		 
+		 s.first_name = argv[first];
+		 s.last_name = argv[last];
+		 s.major = argv[m];
+		 s.year = atoi(argv[y]);
+		 
+		 print_student(major, s);
+	}   
   return 0;
+
 }
+
